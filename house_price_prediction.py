@@ -58,3 +58,10 @@ for modelname, model in models.items():    #iterating through models
     results.append([model_name, mse, rmse, mae, r2])
     print(f"{modelname} → MSE: {mse:.4f}, RMSE: {rmse:.4f}, MAE: {mae:.4f}, R²: {r2:.4f}")
 results_df = pd.DataFrame(results, columns=["Model", "MSE", "RMSE", "MAE", "R2"])
+
+#visualizing R2 scores of models
+plt.figure(figsize=(8,5))
+sns.barplot(data=results_df, x="Model", y="R2", palette="viridis")
+plt.title("R² Score Comparison of Models", fontsize=14)
+plt.ylabel("R² Score")
+plt.show()
