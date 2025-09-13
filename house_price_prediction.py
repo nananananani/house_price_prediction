@@ -35,12 +35,26 @@ X_scaled = scaler.fit_transform(X)
 #80-20 train-test split
 X_train, X_test, y_train, y_test = train_test_split(
     X_scaled, y, test_size=0.2, random_state=42)
+
 models = { #making dictionary of models to try
     "Linear Regression": LinearRegression(),
     "Decision Tree": DecisionTreeRegressor(random_state=42),
     "Random Forest": RandomForestRegressor(random_state=42)
 }
+
 results = [] 
+
 for modelname, model in models.items():    #iterating through models
     model.fit(X_train, y_train)               # train model
     predictions = model.predict(X_test)       # test model
+
+    #multiple metrics to evaluate model 
+    mse = mean_squared_error(y_test, predictions) #average of sqaured differences between actual and predicted values (lower is better)
+    rmse = np.sqrt(mse) #square root of mse (same unit as target variable)
+    mae = mean_absolute_error(y_test, predictions) #how off predictions are on average (lower is better)
+    r2 = r2_score(y_test, predictions) #variance in target explained by model (close to 1 is better)
+
+    #storing results as list of lists
+    results.append([model_name, mse, rmse, mae, r2])
+    print(f"{modelname} → MSE: {mse:.4f}, RMSE: {rmse:.4f}, MAE: {mae:.4f}, R²: {r2:.4f}")
+results_df = pd.DataFrame(results, columns=["Model", "MSE", "RMSE", "MAE", "R2"])
