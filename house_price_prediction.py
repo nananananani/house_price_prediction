@@ -23,14 +23,14 @@ df = housing_data.frame
 
 #checking for missing values
 print("\nMissing values in each column:")
-print(data.isnull().sum())
+print(df.isnull().sum())
 
 print("First 5 rows of dataset:")
-print(data.head()) #prints first 5 rows of dataset
+print(df.head()) #prints first 5 rows of dataset
 
 #separate features and target
-X = data.drop("MedHouseVal", axis=1) #X will contain all columns except target house price column - bcz we want to predict house price
-y = data["MedHouseVal"]  #target output we want to predict
+X = df.drop("MedHouseVal", axis=1) #X will contain all columns except target house price column - bcz we want to predict house price
+y = df["MedHouseVal"]  #target output we want to predict
 
 #scaling features
 scaler = StandardScaler() #mean=0, std=1
@@ -59,23 +59,45 @@ for modelname, model in models.items():    #iterating through models
     r2 = r2_score(y_test, predictions) #variance in target explained by model (close to 1 is better)
 
     #storing results as list of lists
-    results.append([model_name, mse, rmse, mae, r2])
-    print(f"{modelname} → MSE: {mse:.4f}, RMSE: {rmse:.4f}, MAE: {mae:.4f}, R²: {r2:.4f}")
+    results.append([modelname, mse, rmse, mae, r2])
+    print(f"\nResults for {modelname}:")
+    print(f"  • Mean Squared Error (MSE):      {mse:.4f}")
+    print(f"  • Root Mean Squared Error (RMSE): {rmse:.4f}")
+    print(f"  • Mean Absolute Error (MAE):     {mae:.4f}")
+    print(f"  • R-squared Score (R²):          {r2:.4f}")
+
 results_df = pd.DataFrame(results, columns=["Model", "MSE", "RMSE", "MAE", "R2"])
 
-#visualizing R2 scores of models
+#r2
 plt.figure(figsize=(8,5))
 sb.barplot(data=results_df, x="Model", y="R2", palette="viridis")
-plt.title("R² Score Comparison of Models", fontsize=14)
-plt.ylabel("R² Score")
+plt.title("Model Comparison: R-squared Score", fontsize=14, weight='bold')
+plt.ylabel("R-squared (R²) ")
+plt.xlabel("Regression Models")
 plt.show()
 
-#visualizing error metrics of models
-plt.figure(figsize=(10,6))
-results_melted = results_df.melt(id_vars="Model", value_vars=["MSE", "RMSE", "MAE"],var_name="Error Metric", value_name="Score")
-sb.barplot(data=results_melted, x="Model", y="Score", hue="Error Metric", palette="magma")
-plt.title("Error Metrics Comparison", fontsize=14)
-plt.ylabel("Error Value")
+#mse
+plt.figure(figsize=(8,5))
+sb.barplot(data=results_df, x="Model", y="MSE", palette="mako")
+plt.title("Model Comparison: Mean Squared Error", fontsize=14, weight='bold')
+plt.ylabel("MSE")
+plt.xlabel("Regression Models")
+plt.show()
+
+#rmse
+plt.figure(figsize=(8,5))
+sb.barplot(data=results_df, x="Model", y="RMSE", palette="crest")
+plt.title("Model Comparison: Root Mean Squared Error", fontsize=14, weight='bold')
+plt.ylabel("RMSE")
+plt.xlabel("Regression Models")
+plt.show()
+
+#mae
+plt.figure(figsize=(8,5))
+sb.barplot(data=results_df, x="Model", y="MAE", palette="rocket")
+plt.title("Model Comparison: Mean Absolute Error", fontsize=14, weight='bold')
+plt.ylabel("MAE")
+plt.xlabel("Regression Models")
 plt.show()
 
 
