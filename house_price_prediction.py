@@ -18,3 +18,9 @@ housing_data = fetch_california_housing(as_frame=True)   # load dataset as dataf
 df = housing_data.frame
 print("First 5 rows of dataset:")
 print(data.head())
+#separate features and target
+X = data.drop("MedHouseVal", axis=1) 
+y = data["MedHouseVal"]              
+#scaling features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
