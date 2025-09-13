@@ -21,6 +21,10 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 housing_data = fetch_california_housing(as_frame=True)   # load dataset as dataframe
 df = housing_data.frame
 
+#checking for missing values
+print("\nMissing values in each column:")
+print(data.isnull().sum())
+
 print("First 5 rows of dataset:")
 print(data.head()) #prints first 5 rows of dataset
 
@@ -61,7 +65,17 @@ results_df = pd.DataFrame(results, columns=["Model", "MSE", "RMSE", "MAE", "R2"]
 
 #visualizing R2 scores of models
 plt.figure(figsize=(8,5))
-sns.barplot(data=results_df, x="Model", y="R2", palette="viridis")
+sb.barplot(data=results_df, x="Model", y="R2", palette="viridis")
 plt.title("R² Score Comparison of Models", fontsize=14)
 plt.ylabel("R² Score")
 plt.show()
+
+#visualizing error metrics of models
+plt.figure(figsize=(10,6))
+results_melted = results_df.melt(id_vars="Model", value_vars=["MSE", "RMSE", "MAE"],var_name="Error Metric", value_name="Score")
+sb.barplot(data=results_melted, x="Model", y="Score", hue="Error Metric", palette="magma")
+plt.title("Error Metrics Comparison", fontsize=14)
+plt.ylabel("Error Value")
+plt.show()
+
+
