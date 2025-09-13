@@ -31,6 +31,8 @@ The models are evaluated using Mean Squared Error (MSE), Root Mean Squared Error
 | R²     | R-squared Score: proportion of variance explained by the model                     | Higher is better |
 
 ### 4. Results
+##### R-Squared Score
+![R^2 Comparison](https://raw.githubusercontent.com/nananananani/house_price_prediction/refs/heads/main/r2%20result.png)
 
 
 
