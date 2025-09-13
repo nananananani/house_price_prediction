@@ -1,5 +1,5 @@
-# Predicting House Prices
-❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 
+# Predicting House Prices ୨୧
+❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°。 ❀°。❀。• *₊°
 ###### (recruitment task for ACM SIGKDD)
 ### 1. Overview
 This project predicts house prices in California using the California Housing Dataset from sklearn.
@@ -33,6 +33,22 @@ The models are evaluated using Mean Squared Error (MSE), Root Mean Squared Error
 ### 4. Results
 ##### R-Squared Score
 ![R^2 Comparison](https://raw.githubusercontent.com/nananananani/house_price_prediction/refs/heads/main/r2%20result.png)
+
+##### Model Results
+![Results Comparison](https://github.com/nananananani/house_price_prediction/blob/main/results.png?raw=true)
+
+⋆.˚—————————————————————————————————————————————————⋆.˚
+
+### 5. Notes
+* Features are scaled using StandardScaler for better model performance.
+* No missing values exist in the dataset.
+
+### 6. Author
+* Name: Janani Hema
+* University: SRMIST KTR
+* Club Recruitment Task: ACM SIGKDD
+* Year: 2
+
 
 
 
