@@ -7,6 +7,7 @@ It compares the performance of three regression models:
    * Linear Regression
    * Decision Tree Regressor
    * Random Forest Regressor
+     
 The models are evaluated using Mean Squared Error (MSE), Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R-squared Score (R²). 
 ### 2. Dataset
 * Source: sklearn.datasets.fetch_california_housing
